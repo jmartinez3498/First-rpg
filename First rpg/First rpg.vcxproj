@@ -139,10 +139,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="map_object.cpp" />
     <ClCompile Include="player_movement.cpp" />
     <ClCompile Include="playing_field.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="map_object.h" />
     <ClInclude Include="player_movement.h" />
     <ClInclude Include="playing_field.h" />
   </ItemGroup>

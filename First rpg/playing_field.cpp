@@ -17,6 +17,10 @@ void playing_field::print_playing_field() {
 
 }
 
+void playing_field::update_win_location() {
+	game_tiles[win_location[0]][win_location[1]] = "W";
+}
+
 void playing_field::update_current_location() {
 	game_tiles[current_location[0]][current_location[1]] = "X";
 }
@@ -51,5 +55,12 @@ void playing_field::move_down() {
 	current_location[1] = current_location[1] + 1;
 	this->update_current_location();
 	this->print_playing_field();
+}
+
+bool playing_field::win_game() {
+	if (current_location == win_location)
+		return true;
+	else
+		return false;
 }
 

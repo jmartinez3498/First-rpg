@@ -3,6 +3,7 @@
 #include <iostream>
 #include "playing_field.h"
 #include "player_movement.h"
+#include "map_object.h"
 
 /*
 void move_right(int* x_, int* y_, std::string tiles[10][10]){
@@ -28,12 +29,31 @@ void print_game_tiles(const int x,const int y,std::string tiles[10][10]) {
 
 int main() {
 	playing_field first_area;
-	//player_movement jon;
 	first_area.update_current_location();
+	first_area.update_win_location();
 	first_area.print_playing_field();
-	for (int i = 0; i < 5; ++i) {
-		first_area.move_right();
-		first_area.move_down();
+	player_hero Jon("Jon", 10, 15, 20);
+
+
+	bool run_game_flag = true;
+	std::string s;
+
+	while (run_game_flag) {
+		std::getline(std::cin, s);
+		if (s == "a")
+			first_area.move_left();
+		else if (s == "d")
+			first_area.move_right();
+		else if (s == "s")
+			first_area.move_down();
+		else if (s == "w")
+			first_area.move_up();
+		else if (s == "stop")
+			run_game_flag = false;
+		if (first_area.win_game()) {
+			std::cout << "You won";
+			run_game_flag = false;
+		}
 	}
 
 

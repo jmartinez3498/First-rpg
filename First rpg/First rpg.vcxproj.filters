@@ -24,12 +24,18 @@
     <ClCompile Include="player_movement.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="map_object.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="playing_field.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="player_movement.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="map_object.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
