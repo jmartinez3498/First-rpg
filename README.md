@@ -30,3 +30,28 @@ later date. I want to try and create an object/person class with hero and enemy 
 stats.
 
 I finished today with creatng an object/person class. I need to integrate the player location to the person.
+
+# 9/25/2020 update
+I'm thinking of changing my playing_field from a vector of strings to a vector of "tiles". This would create a
+new class called tiles. After reading some discussions about similar problems on stackexchange
+https://gamedev.stackexchange.com/questions/19693/in-a-2d-tile-based-game-how-should-npcs-and-tiles-reference-each-other
+https://gamedev.stackexchange.com/questions/131010/how-do-i-efficiently-manage-a-tile-based-map-with-items-and-characters
+this seems like a better design than I have right now.
+
+# 9/29/2020 update
+I ran into a problem in which I created a vector of custom class objects similar to one found in a homework. 
+Like the homework I changed it to a vector of custom class pointers. Now I am running into use of undefined
+types/incomplete type error that has to do with one of my classes not being defined before some of its functions
+being used in a different class (Specifically the constructor is being used). 
+https://stackoverflow.com/questions/33964994/error-c2027-use-of-undefined-type-how-to-declare-class
+https://stackoverflow.com/questions/2297567/where-should-include-be-put-in-c#:~:text=As%20a%20rule%2C%20put%20your,issue%20as%20your%20project%20grows.
+I sort of fixed the problem. Now I am having a problem that the constuctor creates pointers to the same memory.
+location. 
+I modified the constructor to create the game_tiles vector so that the pointers point to different memory 
+locations.
+Everything is working just as it did before I decided to create my map_tiles class. Now I just need to implement
+the map_object classes.
+I added a couple of variables to map_object and function to map_tiles.
+
+
+
