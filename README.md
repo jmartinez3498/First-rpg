@@ -53,5 +53,15 @@ Everything is working just as it did before I decided to create my map_tiles cla
 the map_object classes.
 I added a couple of variables to map_object and function to map_tiles.
 
+# 10/3/2020 update
+So I mostly finished creating a walkable map. Now I want to implement map objects onto the map itself. Guess
+I forgot how derived classes worked and ran into an error.
+https://stackoverflow.com/questions/5844584/error-function-is-inaccessible
+It was easily fixed and I changed some string allocations to const &.
+So I managed to integrate map objects with map tiles. I need to figure out how to update the map correctly
+because right now I only update one location at a time. I also need to abstract the character movement from
+the map itself to its own class that the characters can use.
+
+
 
 

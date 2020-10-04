@@ -6,27 +6,6 @@
 #include "map_object.h"
 #include "playing_field.h"
 
-/*
-void move_right(int* x_, int* y_, std::string tiles[10][10]){
-
-	tiles[*y_][*x_] = ".";
-	if (*x_ < 10)
-		*x_ = *x_ + 1;
-	tiles[*y_][*x_] = "X";
-
-}
-
-void print_game_tiles(const int x,const int y,std::string tiles[10][10]) {
-
-	std::cout << "\n";
-	for (int i = 0; i < x; ++i) {
-		for (int j = 0; j < y; ++j) {
-			std::cout << tiles[i][j];
-		}
-		std::cout << "\n";
-	}
-}
-*/
 
 int main() {
 
@@ -35,8 +14,12 @@ int main() {
 	first_area.update_win_location();
 	first_area.print_playing_field();
 
-	player_hero Jon("Jon", 10, 15, 20, { (0,0) });
-	
+	player_hero Jon("Jon", 10, 15, 20, { 0,0 });
+	enemy_npc Strider("Striker", 20, 30, 40, { 3,3 });
+	//Jon.get_map_coordinates(); vector containing (0,0)
+	//first_area;
+	first_area.place_map_object(&Jon);
+	first_area.place_map_object(&Strider);
 
 	bool run_game_flag = true;
 	std::string s;

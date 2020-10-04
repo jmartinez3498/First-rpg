@@ -1,6 +1,7 @@
 #pragma once
 
 class map_tiles;
+class map_object;
 
 //Playing field is a map containing the x & y dimensions
 //Do I even need to have all this mumbo jumbo if I create the playing_field size myself???
@@ -40,6 +41,7 @@ public:
 	void move_up();
 	void move_down();
 	bool win_game();
+	void place_map_object(map_object* _map_object);
 
 protected:
 

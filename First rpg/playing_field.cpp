@@ -3,6 +3,7 @@
 #include <iostream>
 #include "playing_field.h"
 #include "map_tiles.h"
+#include "map_object.h"
 
 
 playing_field::playing_field(): x_dim(10), y_dim(10), starting_location({ 0,0 }), current_location({ 0,0 }), win_location({ 9,9 }) {
@@ -80,5 +81,12 @@ bool playing_field::win_game() {
 		return true;
 	else
 		return false;
+}
+
+void playing_field::place_map_object(map_object* _map_object) {
+	std::vector<int> map_coords;
+	map_coords = _map_object->get_map_coordinates();
+	game_tiles[map_coords[0]][map_coords[1]]->place_map_object(_map_object);
+	//game_tiles[map_coords[0]][map_coords[1]]->update_tile();
 }
 

@@ -13,9 +13,11 @@ public:
 	bool is_traversable() { return traversable; }
 	bool has_map_object() { return map_object_present; }
 	void place_map_object() { map_object_present = true; }
-	void remove_map_object() { map_object_present = false; }
+	void place_map_object(map_object* _map_object);
+	void remove_map_object();
 	void place_win_location() { win_location = true; }
 	void update_tile();
+	map_object* map_object_type() { return _map_object; }
 	
 
 private:
