@@ -4,7 +4,7 @@
 class player_movement {
 
 public:
-	player_movement() : _current_location() {}
+	player_movement(std::vector<int*> _character_location) : character_location(_character_location) {}
 	void move_right();
 	void move_left();
 	void move_up();
@@ -14,5 +14,5 @@ public:
 
 
 private:
-	std::vector<int*> _current_location;
+	std::vector<int*> character_location;
 };

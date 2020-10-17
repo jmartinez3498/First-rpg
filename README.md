@@ -62,6 +62,23 @@ So I managed to integrate map objects with map tiles. I need to figure out how t
 because right now I only update one location at a time. I also need to abstract the character movement from
 the map itself to its own class that the characters can use.
 
+# 10/4/2020 update
+I'm not sure if I still need to abstract the movement to its own class. I would like to, but it seems kinda of
+complicated after thinking about it for a while. I just need to figure out how to change map object coordinates.
+Finished most of map_object functionality. 
+
+# 10/16/2020 update
+I want to make object interact with each other now.
+I cleaned up the move functions into one move function.
+https://stackoverflow.com/questions/60369308/is-it-bad-programming-practice-to-have-a-function-that-prints-statement
+I might update my print functions later for greater functionality.
+Now that I think about it this might be a good time to look into template functions.
+updated map_object class.
+I'm running into a polymorphism problem. I just needed to foward delcare classes.
+I managed to a character a weapon by walking over it on the map, but I had to create new functions that would
+take weapons pointer parameters because I wasn't able to do with functions that took in map object pointer
+parameters. I have too look into this more. It might be that I'm not understanding polymorphism fully or maybe
+I would need to use template functions.
 
 
 
