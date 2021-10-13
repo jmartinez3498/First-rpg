@@ -9,10 +9,11 @@
 
 int main() {
 
-	player_hero Jon("Jon", 10, 15, 20, { 0,0 });
+	
+	player_hero Jon("Jon", 10, 15, 20, { 1,1 });
 	enemy_npc Strider("Strider", 20, 30, 40, { 3,3 });
-	friendly_npc Shop_keeper("Shop Keeper", {1,1});
-	weapon long_sword(true, "long sword", { 1,0 }, 10);
+	friendly_npc Shop_keeper("Shop Keeper", {2,1});
+	weapon long_sword(true, "long sword", { 1,2 }, 10);
 	playing_field first_area;
 	first_area.place_map_object(&Jon);
 	first_area.place_map_object(&Strider);
@@ -40,8 +41,10 @@ int main() {
 			std::cout << "You won";
 			run_game_flag = false;
 		}
+		
 		//Have enemy randomly move
 		//print player stats?
 
 	}
+	return 0;
 }
