@@ -10,6 +10,9 @@
 int main() {
 
 	
+
+
+	std::cout<<"test"<<std::endl;
 	player_hero Jon("Jon", 10, 15, 20, { 1,1 });
 	enemy_npc Strider("Strider", 20, 30, 40, { 3,3 });
 	friendly_npc Shop_keeper("Shop Keeper", {2,1});
