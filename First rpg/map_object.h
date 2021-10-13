@@ -61,7 +61,7 @@ class character : public map_object{
 public:
 	character(const std::string& _character_name, int _life, int _strength, int _defense, const std::string& _tile_string_representation, std::vector<int> _map_coordinates) : life(_life), strength(_strength), defense(_defense), equiped_weapon(nullptr),
 		map_object(_character_name, "character", _tile_string_representation, _map_coordinates) {}
-	character(const std::string& _character_name, const std::string& _tile_string_representation, std::vector<int> _map_coordinates) : life(NULL), strength(NULL), defense(NULL), equiped_weapon(nullptr),
+	character(const std::string& _character_name, const std::string& _tile_string_representation, std::vector<int> _map_coordinates) : life(1), strength(1), defense(1), equiped_weapon(nullptr),
 		map_object(_character_name, "character", _tile_string_representation, _map_coordinates) {}
 	int get_life() {return life; }
 	int get_strength() { return strength; }

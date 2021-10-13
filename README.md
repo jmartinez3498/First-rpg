@@ -80,5 +80,7 @@ take weapons pointer parameters because I wasn't able to do with functions that 
 parameters. I have too look into this more. It might be that I'm not understanding polymorphism fully or maybe
 I would need to use template functions.
 
-
-
+# 10/12/2021 update
+In my code, I am creating a vector of map tiles, that needs to be deleated so I don't
+run into memory leaks.
+I don't like how my code is structured and I want to refactor it.
