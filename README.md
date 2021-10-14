@@ -89,3 +89,6 @@ I don't like how my code is structured and I want to refactor it.
 I fixed the problem with weapons. I had a problem with polymorphism. My objects
 were getting passed correctly, except I needed to declare a virtual function
 in the base class to be able to call the derived class function.
+I cleaned up a lot of duplicate functions. I think theres a little more refactoring
+to do on map tiles.
+Need to fix out of bounds errors when moving (do later on separate branch).

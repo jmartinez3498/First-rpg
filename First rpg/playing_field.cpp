@@ -16,20 +16,6 @@ playing_field::playing_field(): x_dim(10), y_dim(10), win_game_flag(false) {
 	}
 }
 
-void playing_field::print_playing_field() {
-	for (int i = 0; i < 10; ++i) {
-		std::cout << "\n";
-	}
-
-	for (int j = 0; j < y_dim; ++j) {
-		for (int i = 0; i < x_dim; ++i) {
-			std::cout << game_tiles[i][j]->get_tile_string_representation();
-		}
-		std::cout << "\n";
-	}
-
-}
-
 void playing_field::print_playing_field(bool valid_move){
 	for (int i = 0; i < 10; ++i) {
 		std::cout << "\n";
@@ -63,7 +49,7 @@ void playing_field::update_game_tiles(map_object* _map_object){
 	game_tiles[map_coords[0]][map_coords[1]]->update_tile();
 }
 
-void playing_field::update(map_object* _map_object, std::string& _direction) {
+void playing_field::update_map(map_object* _map_object, std::string& _direction) {
 	std::vector<int> prev_map_coords;
 	std::vector<int> new_map_coords;
 	prev_map_coords = _map_object->get_map_coordinates();
@@ -71,14 +57,14 @@ void playing_field::update(map_object* _map_object, std::string& _direction) {
 	new_map_coords = _map_object->get_map_coordinates();
 
 	bool collision_flag = false;
-	collision_flag = this->collision_check(_direction, new_map_coords);
+	collision_flag = this->collision_check(new_map_coords);
 	if (collision_flag == true) {
 		if (game_tiles[new_map_coords[0]][new_map_coords[1]]->get_map_object_type() == "item") {
 			if (_map_object->get_object_type() == "character"){
 				character* _character = (character*)_map_object;
 				_character->equip_weapon(game_tiles[new_map_coords[0]][new_map_coords[1]]->get_map_object());
 				this->update_game_tiles(_character, prev_map_coords);
-				this->print_playing_field();
+				this->print_playing_field(true);
 			}
 			else{
 				std::cout<<"invalid";
@@ -87,21 +73,21 @@ void playing_field::update(map_object* _map_object, std::string& _direction) {
 		else if (game_tiles[new_map_coords[0]][new_map_coords[1]]->get_map_object_type() == "win_object"){
 			this->set_win_game(true);
 			this->update_game_tiles(_map_object, prev_map_coords);
-			this->print_playing_field();
+			this->print_playing_field(true);
 		}
 		else{
-			_map_object->change_map_coordinates(prev_map_coords);
+			_map_object->set_map_coordinates(prev_map_coords);
 			this->print_playing_field(false);
 		}
 	}
 	else {
 		this->update_game_tiles(_map_object, prev_map_coords);
-		this->print_playing_field();
+		this->print_playing_field(true);
 	}
 
 }
 
-bool playing_field::collision_check(std::string& _direction, std::vector<int>& _map_coords) {
+bool playing_field::collision_check(std::vector<int>& _map_coords) {
 	return game_tiles[_map_coords[0]][_map_coords[1]]->has_map_object();
 }
 

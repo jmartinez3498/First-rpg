@@ -3,7 +3,7 @@
 #include <iostream>
 #include "map_object.h"
 
-void map_object::change_map_coordinates(std::vector<int> _map_coordinates) {
+void map_object::set_map_coordinates(std::vector<int> _map_coordinates) {
 	map_coordinates = _map_coordinates;
 }
 
@@ -19,7 +19,7 @@ void map_object::move(std::string& _direction){
 	else if (_direction == "w")
 		map_coords[1] = map_coords[1] - 1;
 
-	this->change_map_coordinates(map_coords);
+	this->set_map_coordinates(map_coords);
 
 }
 

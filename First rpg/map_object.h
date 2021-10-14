@@ -11,7 +11,7 @@ public:
 	std::string get_object_type() { return object_type; }
 	std::vector<int> get_map_coordinates() { return map_coordinates; }
 	std::string get_tile_string_representation() { return tile_string_representation; }
-	void change_map_coordinates(std::vector<int> _map_coordinates);
+	void set_map_coordinates(std::vector<int> _map_coordinates);
 	void move(std::string& _direction);
 	virtual void print_stats();
 

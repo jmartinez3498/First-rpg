@@ -23,7 +23,7 @@ int main() {
 	first_area.update_game_tiles(&long_sword);
 	first_area.update_game_tiles(&w);
 
-	first_area.print_playing_field();
+	first_area.print_playing_field(true);
 
 	bool run_game_flag = true;
 	bool collision;
@@ -35,7 +35,7 @@ int main() {
 		if (s == "stop")
 			run_game_flag = false;
 		else if (s == "a" || s == "s" || s == "d" || s == "w"){
-			first_area.update(&Jon, s);
+			first_area.update_map(&Jon, s);
 
 		}
 
