@@ -84,3 +84,8 @@ I would need to use template functions.
 In my code, I am creating a vector of map tiles, that needs to be deleated so I don't
 run into memory leaks.
 I don't like how my code is structured and I want to refactor it.
+
+# 10/13/2021 update
+I fixed the problem with weapons. I had a problem with polymorphism. My objects
+were getting passed correctly, except I needed to declare a virtual function
+in the base class to be able to call the derived class function.

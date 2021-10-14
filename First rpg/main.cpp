@@ -11,22 +11,22 @@ int main() {
 
 	
 
-
-	std::cout<<"test"<<std::endl;
 	player_hero Jon("Jon", 10, 15, 20, { 1,1 });
 	enemy_npc Strider("Strider", 20, 30, 40, { 3,3 });
 	friendly_npc Shop_keeper("Shop Keeper", {2,1});
 	weapon long_sword(true, "long sword", { 1,2 }, 10);
+	win_object w("winner", "X", {8,8}, true);
 	playing_field first_area;
-	first_area.place_map_object(&Jon);
-	first_area.place_map_object(&Strider);
-	first_area.place_map_object(&Shop_keeper);
-	first_area.place_weapon(&long_sword);
+	first_area.update_game_tiles(&Jon);
+	first_area.update_game_tiles(&Strider);
+	first_area.update_game_tiles(&Shop_keeper);
+	first_area.update_game_tiles(&long_sword);
+	first_area.update_game_tiles(&w);
 
-	first_area.update_win_location();
 	first_area.print_playing_field();
 
 	bool run_game_flag = true;
+	bool collision;
 	std::string s;
 
 	while (run_game_flag) {
@@ -34,13 +34,15 @@ int main() {
 		std::getline(std::cin, s);
 		if (s == "stop")
 			run_game_flag = false;
-		else if (s == "a" || s == "s" || s == "d" || s == "w")
-			first_area.move(&Jon, s);
-		else {
-			std::cout << "not a valid movement\n";
-			first_area.print_playing_field();
+		else if (s == "a" || s == "s" || s == "d" || s == "w"){
+			first_area.update(&Jon, s);
+
 		}
-		if (first_area.win_game()) {
+
+		else {
+			first_area.print_playing_field(false);
+		}
+		if (first_area.get_win_game_flag() == true) {
 			std::cout << "You won";
 			run_game_flag = false;
 		}

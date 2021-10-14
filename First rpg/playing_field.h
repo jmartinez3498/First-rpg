@@ -11,24 +11,19 @@ public:
 	playing_field();
 	int get_x_dim() { return x_dim; }
 	int get_y_dim() { return y_dim; }
-	std::vector<int> get_starting_location() { return starting_location; }
-	std::vector<int> get_current_location() { return current_location; }
 	void print_playing_field();
-	void update_win_location();
-	void update_current_location(character* _map_object);
-	void update_previous_location(character* _map_object);
-	void move(character* _character, std::string& _direction);
+	void print_playing_field(bool valid_move);
+	void update_game_tiles(map_object* _map_object, std::vector<int>& _map_coords);
+	void update_game_tiles(map_object* _map_object);
+	void update(map_object* _character, std::string& _direction);
 	bool collision_check(std::string& _direction, std::vector<int>& _map_coords);
-	bool win_game();
-	void place_map_object(map_object* _map_object);
-	void place_weapon(weapon* _weapon);
+	void set_win_game(bool flag);
+	bool get_win_game_flag();
 
 private:
 	const int x_dim;
 	const int y_dim;
-	std::vector<int> starting_location;
-	std::vector<int> current_location;
 	std::vector<std::vector<map_tiles*>> game_tiles;
-	std::vector<int> win_location;
+	bool win_game_flag;
 	//std::vector<map_object*> _map_objects; maybe??
 };

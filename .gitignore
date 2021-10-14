@@ -338,3 +338,11 @@ ASALocalRun/
 
 # BeatPulse healthcheck temp database
 healthchecksdb
+
+#vscode
+.vscode
+
+#windows executables from build
+main.exe
+map_object.exe
+playing_field.exe

@@ -12,6 +12,7 @@ public:
 	std::vector<int> get_map_coordinates() { return map_coordinates; }
 	std::string get_tile_string_representation() { return tile_string_representation; }
 	void change_map_coordinates(std::vector<int> _map_coordinates);
+	void move(std::string& _direction);
 	virtual void print_stats();
 
 private:
@@ -22,13 +23,25 @@ private:
 
 };
 
+class win_object : public map_object{
+
+	public:
+		win_object(const std::string& _object_name, const std::string& _tile_string_representation, std::vector<int> _map_coordinates, bool _win):
+		win(_win),
+		map_object(_object_name, "win_object", _tile_string_representation, _map_coordinates) {}
+	private:
+		bool win;
+};
+
 class item : public map_object {
 
 public:
 	item(bool _equipable,const std::string& _item_name, const std::string& _tile_string_representation, std::vector<int> _map_coordinates):
 		equipable(_equipable),
 		map_object(_item_name, "item", _tile_string_representation, _map_coordinates) {}
-	void print_stats();
+	virtual void print_stats() override;
+	
+
 private:
 	bool equipable;
 };
@@ -38,7 +51,7 @@ public:
 	weapon(bool _equipable, const std::string& _item_name, std::vector<int> _map_coordinates, int _item_power) :
 		item_power(_item_power),
 		item(_equipable, _item_name,"W", _map_coordinates) {}
-	void print_stats();
+	void print_stats() override;
 	int get_item_power() { return item_power; }
 private:
 	int item_power;
@@ -49,7 +62,7 @@ public:
 	shield(bool _equipable, const std::string& _item_name, std::vector<int> _map_coordinates, int _shield_rating) :
 		equipable(_equipable), shield_rating(_shield_rating),
 	item(_equipable, _item_name,"S", _map_coordinates){}
-	void print_stats();
+	void print_stats() override;
 	int get_shield_rating() { return shield_rating; }
 private:
 	bool equipable;
@@ -66,8 +79,9 @@ public:
 	int get_life() {return life; }
 	int get_strength() { return strength; }
 	int get_defense() { return defense; }
-	void print_stats();
-	void equip_weapon(weapon* weapon);
+	weapon* get_weapon() {return equiped_weapon;}
+	void print_stats() override;
+	void equip_weapon(map_object* object);
 private:
 	const int life;
 	int strength;
