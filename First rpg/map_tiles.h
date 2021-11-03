@@ -1,13 +1,12 @@
 #pragma once
 
 class map_object;
-class weapon;
 
-//stuff
 class map_tiles {
 
 public:
-	map_tiles(bool _boundary_tile);
+
+	map_tiles(bool _boundary_tile, char c);
 	std::string get_tile_string_representation() { return tile_string_representation; }
 	bool is_traversable() { return traversable; }
 	bool has_map_object() { return map_object_present; }
@@ -24,5 +23,15 @@ private:
 	bool map_object_present;
 	std::string tile_string_representation;
 	map_object* object;
+
+};
+
+//can implement functionality later
+class wall : public map_tiles{
+
+	public:
+		wall(bool _breakable, char c) : breakable(_breakable), map_tiles(true, c){};
+	private:
+		bool breakable;
 
 };

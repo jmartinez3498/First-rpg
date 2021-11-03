@@ -10,14 +10,15 @@ void map_object::set_map_coordinates(std::vector<int> _map_coordinates) {
 void map_object::move(std::string& _direction){
 	std::vector<int> map_coords;
 	map_coords = this->get_map_coordinates();
+	//quick fix for directions. keep for now
 	if (_direction == "a")
-		map_coords[0] = map_coords[0] - 1;
-	else if (_direction == "d")
-		map_coords[0] = map_coords[0] + 1;
-	else if (_direction == "s")
-		map_coords[1] = map_coords[1] + 1;
-	else if (_direction == "w")
 		map_coords[1] = map_coords[1] - 1;
+	else if (_direction == "d")
+		map_coords[1] = map_coords[1] + 1;
+	else if (_direction == "s")
+		map_coords[0] = map_coords[0] + 1;
+	else if (_direction == "w")
+		map_coords[0] = map_coords[0] - 1;
 
 	this->set_map_coordinates(map_coords);
 

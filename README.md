@@ -92,3 +92,36 @@ in the base class to be able to call the derived class function.
 I cleaned up a lot of duplicate functions. I think theres a little more refactoring
 to do on map tiles.
 Need to fix out of bounds errors when moving (do later on separate branch).
+
+# 10/14/2021 update
+Fixed out of bounds errors
+
+
+# 10/21/2021 update
+I wanted to figure out how to make creating new maps more streamlined.
+I am going to create the maps in a text editor so I can visualize the layout.
+Then I am going to read the map from the file and create the map object from the layout.
+I can actually instantiate the map and everything on it from a text file map that has
+the corresponding items on it. I would just have to create the logic to do so.
+
+Finished product 1.0 would include running the application where it greats you and 
+introduces you to the game. You type in the name for your character and the game begins.
+You are required to kill 2 enemies, the first drops money and a weapon. The money is
+used to buy a shield at the vendor which is required to kill the second enemy. If you
+don't have the shield he will kill you before you kill him and you are defeated. If
+you defeat him, he drops a key that opens a door which wins you the game. Note that
+the door is not openable if you don't have the key.
+
+Funcitonality still needed:
+-boundary tile functionality
+-read map layout from text file
+-introduce game
+-vendor interaction
+-enemy interaction
+-door interaction
+
+I would consider this version 0.8
+
+# 11/3/2021 update
+I wanted to move character instantiation to text files as well. I would first create the map using the map text files, then I would place all the characters on the map using another text file.
+Alternatively, I can just ignore this for now, and only focus on creating a map with boundaries from the text files while still inputing the objects manually. I think it would require more code refactoring, but I don't think I want to do this because my goal is for a really small game. If I was making a more fleshed out game, I could improve my code, but I want to work on other things independent of this game.

@@ -4,17 +4,16 @@
 #include "map_tiles.h"
 #include "map_object.h"
 
-map_tiles::map_tiles(bool _boundary_tile) :boundary_tile(_boundary_tile), map_object_present(false) {
-	if (boundary_tile == true) {
-		tile_string_representation = "#";
+map_tiles::map_tiles(bool _boundary_tile, char c): boundary_tile(_boundary_tile), map_object_present(false) {
+	tile_string_representation = c;
+	if (tile_string_representation == "#"){
 		traversable = false;
 	}
-	else {
-		tile_string_representation = ".";
+	else{
 		traversable = true;
 	}
 	object = nullptr;
-	map_object_present = false;
+
 }
 
 void map_tiles::update_tile() {
