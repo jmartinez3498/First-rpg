@@ -125,3 +125,8 @@ I would consider this version 0.8
 # 11/3/2021 update
 I wanted to move character instantiation to text files as well. I would first create the map using the map text files, then I would place all the characters on the map using another text file.
 Alternatively, I can just ignore this for now, and only focus on creating a map with boundaries from the text files while still inputing the objects manually. I think it would require more code refactoring, but I don't think I want to do this because my goal is for a really small game. If I was making a more fleshed out game, I could improve my code, but I want to work on other things independent of this game.
+
+Functionality completed:
+-boundary tile functionality
+-read map layout from text file (only map layout)
+-introduce game

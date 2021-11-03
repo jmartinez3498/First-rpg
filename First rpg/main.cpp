@@ -10,15 +10,7 @@
 
 int main() {
 
-	
-
-	player_hero Jon("Jon", 10, 15, 20, { 1,3 });
-	enemy_npc Strider("Strider", 20, 30, 40, { 3,5 });
-	friendly_npc Shop_keeper("Shop Keeper", {3,1});
-	weapon long_sword(true, "long sword", { 1,5 }, 10);
-	win_object w("winner", "X", {8,10}, true);
-
-	//this solution works for now
+	//this solution for reading the map from a text file works for now
 	std::ifstream map1("first_area.txt");
 	std::string line;
 	std::getline(map1,line);
@@ -28,6 +20,17 @@ int main() {
 
 	//here it passes the remander of the stream to the playing field object.
 	playing_field first_area(x,y, map1);
+
+	std::string name;
+	std::cout<<"Hello! Welcome to First RPG.\n Please enter your character name:\n";
+	std::getline(std::cin, name);
+	//creating the map objects
+	player_hero Jon(name, 10, 15, 20, { 1,3 });
+	enemy_npc Strider("Strider", 20, 30, 40, { 3,5 });
+	friendly_npc Shop_keeper("Shop Keeper", {3,1});
+	weapon long_sword(true, "long sword", { 1,5 }, 10);
+	win_object w("winner", "X", {8,10}, true);
+
 	first_area.update_game_tiles(&Jon);
 	first_area.update_game_tiles(&Strider);
 	first_area.update_game_tiles(&Shop_keeper);
