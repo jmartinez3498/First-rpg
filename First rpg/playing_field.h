@@ -14,8 +14,10 @@ public:
 	void update_game_tiles(map_object* _map_object);
 	void update_map(map_object* _character, std::string& _direction);
 	bool collision_check(std::vector<int>& _map_coords);
-	void set_win_game(bool flag);
-	bool get_win_game_flag();
+	void set_win_game(bool flag) {win_game_flag = flag;}
+	void set_lost_game(bool flag) {lost_game_flag = flag;}
+	bool get_lost_game_flag() {return lost_game_flag;}
+	bool get_win_game_flag() {return win_game_flag;}
 	bool out_of_bounds(std::vector<int>& _map_coords);
 
 private:
@@ -23,5 +25,6 @@ private:
 	const int y_dim;
 	std::vector<std::vector<map_tiles*>> game_tiles;
 	bool win_game_flag;
+	bool lost_game_flag;
 
 };

@@ -6,7 +6,7 @@
 #include "map_tiles.h"
 #include "map_object.h"
 
-playing_field::playing_field(int _x_dim, int _y_dim, std::ifstream& _map): x_dim(_x_dim), y_dim(_y_dim), win_game_flag(false) {
+playing_field::playing_field(int _x_dim, int _y_dim, std::ifstream& _map): x_dim(_x_dim), y_dim(_y_dim), win_game_flag(false), lost_game_flag(false) {
 
 
 
@@ -23,6 +23,7 @@ playing_field::playing_field(int _x_dim, int _y_dim, std::ifstream& _map): x_dim
 			//i.e. 10 rows with 20 columns
 			std::vector<map_tiles*> _tile;
 			for(int i = 0; i < line.length(); ++i){
+				//if not equal to . or # check map line[i]
 				_tile.push_back(new map_tiles(false, line[i]));
 			}
 
@@ -98,25 +99,51 @@ void playing_field::update_map(map_object* _map_object, std::string& _direction)
 	else{
 		collision_flag = this->collision_check(new_map_coords);
 		if (collision_flag == true) {
-			if (game_tiles[new_map_coords[0]][new_map_coords[1]]->get_map_object_type() == "item") {
-				if (_map_object->get_object_type() == "character"){
+			if (game_tiles[new_map_coords[0]][new_map_coords[1]]->get_map_object_type() == "weapon") {
+
+				//checks if the map object is a character. Invalid if not a character
+				//then equips the item
+				if (_map_object->get_object_type() == "player_hero"){
+					//another instance of using casting so we don't have to use virtual functions
 					character* _character = (character*)_map_object;
 					_character->equip_weapon(game_tiles[new_map_coords[0]][new_map_coords[1]]->get_map_object());
 					this->update_game_tiles(_character, prev_map_coords);
 					this->print_playing_field(true, bounds_flag);
 				}
 				else{
-					std::cout<<"invalid";
+					std::cout<<"invalid: not a player hero";
 				}
 			}
+			//checks if we ran into the win object
 			else if (game_tiles[new_map_coords[0]][new_map_coords[1]]->get_map_object_type() == "win_object"){
 				this->set_win_game(true);
 				this->update_game_tiles(_map_object, prev_map_coords);
 				this->print_playing_field(true, bounds_flag);
 			}
-			else{
-				_map_object->set_map_coordinates(prev_map_coords);
-				this->print_playing_field(false, bounds_flag);
+			//else the item is either a friendly npc or enemy
+			//need logic for when npc is friendly
+			else if (game_tiles[new_map_coords[0]][new_map_coords[1]]->get_map_object_type() == "enemy_npc"){
+				
+				_map_object->attack(game_tiles[new_map_coords[0]][new_map_coords[1]]->get_map_object());
+				//check if enemy died
+				if (game_tiles[new_map_coords[0]][new_map_coords[1]]->get_map_object()->is_dead()){
+					this->update_game_tiles(_map_object, prev_map_coords);
+					this->print_playing_field(true, bounds_flag);
+				}
+				//enemy still alive and attacks back
+				else{
+					game_tiles[new_map_coords[0]][new_map_coords[1]]->get_map_object()->attack(_map_object);
+					//need a check to see if hero is dead
+					if (_map_object->is_dead()){
+						//do nothing
+					}
+					else{
+						_map_object->set_map_coordinates(prev_map_coords);
+						this->print_playing_field(false, bounds_flag);
+					}
+
+				}
+
 			}
 		}
 		else {
@@ -139,10 +166,6 @@ bool playing_field::collision_check(std::vector<int>& _map_coords) {
 
 void playing_field::set_win_game(bool flag) {
 	win_game_flag = flag;
-}
-
-bool playing_field::get_win_game_flag(){
-	return win_game_flag;
 }
 
 bool playing_field::out_of_bounds(std::vector<int>& _map_coords){

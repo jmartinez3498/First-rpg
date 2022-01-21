@@ -28,6 +28,26 @@ void map_object::print_stats() {
 	std::cout<<this->get_object_name();
 }
 
+void map_object::attack(map_object* object){
+
+}
+
+void map_object::defend(map_object* object){
+
+}
+
+int map_object::get_life(){
+	return -1;
+}
+
+void map_object::set_life(int _life){
+
+}
+
+bool map_object::is_dead(){
+	return false;
+}
+
 void item::print_stats() {
 	std::cout << this->get_object_name() << ": ";
 }
@@ -55,7 +75,38 @@ void character::print_stats() {
 	}
 }
 
+/*
+for future reference:
+we pass the map_object instead of a weapon because that allows the function
+to work with the map objects passed onto the playing field object since the game tiles
+contain a vector of map objects. Then we convert to a weapon which allows us to 
+use the weapon functions.
+Note: there is no splicing because we are pointing to a weapon object with a map object
+pointer.
+An alternative approach is using pure virtual functions in my map_object class
+*/
 void character::equip_weapon(map_object* object){
 	equiped_weapon = (weapon*) object;
 	strength = strength + equiped_weapon->get_item_power();
+}
+
+//lets use the pure virtual functions here just to see how they work
+void character::attack(map_object* object){
+	int x = object->get_life() - this->get_strength();
+	object->set_life(x);
+	object->print_stats();
+}
+
+void character::defend(map_object* object){
+	std::cout << object->get_life();
+}
+
+bool character::is_dead(){
+	if (this->get_life() <= 0){
+		std::cout << this->get_object_name() << " was defeated \n";
+		return true;
+	}
+	else{
+		return false;
+	}
 }

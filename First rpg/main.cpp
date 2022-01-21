@@ -60,9 +60,12 @@ int main() {
 			std::cout << "You won";
 			run_game_flag = false;
 		}
+		if (Jon.is_dead()){
+			run_game_flag = false;
+			std::cout << "You lost";
+		}
 		
 		//Have enemy randomly move
-		//print player stats?
 
 	}
 	return 0;

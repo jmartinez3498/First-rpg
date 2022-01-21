@@ -130,3 +130,6 @@ Functionality completed:
 -boundary tile functionality
 -read map layout from text file (only map layout)
 -introduce game
+
+# 11/11/2021
+-random walk
